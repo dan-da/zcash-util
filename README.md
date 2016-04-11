@@ -139,11 +139,11 @@ Result:
 
    $ ./protect_coins.php 
 
-   protect_coins.php --unspent=<arg>
+    protect_coins.php --unspent=<arg>
 
-   This script makes public funds (utxo) into private funds.
+    This script makes public funds (utxo) into private funds.
 
-   Required:
+    Required:
 
     --unspent=<arg>       all|first|last|<txlist>
                            all    = convert all unspent outputs
@@ -151,7 +151,7 @@ Result:
                            last   = convert last unspent output
                            txlist = one or more txid, comma separated.
 
-   Optional:
+    Optional:
 
     --zcash-cli=<path>    path to zcash-cli.  default = './src/zcash-cli'
 
