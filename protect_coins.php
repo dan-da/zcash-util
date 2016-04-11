@@ -20,7 +20,6 @@ foreach( $unspent as $u ) {
 	$obj = ['txid' => $u['txid'], 'vout' => 0];
 	$txbuflist[] = json_encode( $obj );
 	$total += $u['amount'];
-	break; // stop after first one, for now.
 }
 $txbuf = sprintf( '[%s]', implode( ',', $txbuflist ) );
 
