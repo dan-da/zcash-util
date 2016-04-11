@@ -137,8 +137,7 @@ Result:
 
 ### Usage
 
-<pre>
-$ ./protect_coins.php 
+   $ ./protect_coins.php 
 
    protect_coins.php --unspent=<arg>
 
@@ -159,7 +158,6 @@ $ ./protect_coins.php
     --verbosity=<level>   silent|results|full|debug   default = full
 
     --help                display usage information
-</pre>
 
 
 # Requirements
