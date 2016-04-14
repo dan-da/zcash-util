@@ -7,6 +7,8 @@ So far I just have the protect_coins script, but will likely add more.
 
 ## protect_coins.php
 
+There is now also a protect_coins.py (python) that works exactly the same.
+
 ### Example Run
 
 ( long fields have been abbreviated for brevity )
