@@ -155,6 +155,8 @@ Result:
 
     Optional:
 
+    --fee=<amt>           fee amount.  default = 0
+
     --zcash-cli=<path>    path to zcash-cli.  default = './src/zcash-cli'
 
     --verbosity=<level>   silent|results|full|debug   default = full
