@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+// author: danda
 
 // First, process CLI args.
 $params = process_args( $argv );
@@ -30,7 +31,7 @@ showresult( $rawtx );
 // send to our private zcash address
 
 showheader( "Calling zcrawpour" );
-$fee = 0.1;
+$fee = $params['fee']; 
 $param = [ $keyinfo['zcaddress'] => $total - $fee ];
 $pour = zcash_cli_rpc( 'zcrawpour', [$rawtx, '{}', json_encode( $param ), $total, $fee] );
 showresult( $pour );
@@ -62,10 +63,11 @@ exit(0);
 
 function get_params() {
 
-        $params = getopt( 'g', array( 'unspent:', 'zcash-cli:', 'verbosity:', 'help' ) );
+        $params = getopt( 'g', array( 'unspent:', 'fee:', 'zcash-cli:', 'verbosity:', 'help' ) );
 
         $params['zcash-cli'] = @$params['zcash-cli'] ?: './src/zcash-cli';
         $params['unspent'] = @$params['unspent'] ?: null;
+        $params['fee'] = @$params['fee'] ? (float)$params['fee']: null;
         $params['verbosity'] = @$params['verbosity'] ?: 'debug';
         $params['help'] = isset( $params['help'] );
 
@@ -203,6 +205,8 @@ function printhelp() {
                            txlist = one or more txid, comma separated.
 
    Optional:
+    
+    --fee=<amt>           fee amount.  default = 0
 
     --zcash-cli=<path>    path to zcash-cli.  default = './src/zcash-cli'
 

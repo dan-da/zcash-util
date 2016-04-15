@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# author: danda
+
 import sys
 import string
 import getopt
@@ -17,16 +19,17 @@ def json_encode_pretty( buf ):
 
 def get_params():
 
-        opts,args = getopt.getopt( sys.argv[1:], '', [ 'unspent=', 'zcash-cli=', 'verbosity=', 'help' ] )
+        opts,args = getopt.getopt( sys.argv[1:], '', [ 'unspent=', 'fee=', 'zcash-cli=', 'verbosity=', 'help' ] )
 
         params = {}
 	for x in opts:
 		name = x[0].lstrip('-')
 		params[name] = x[1]
 
-        params['zcash-cli'] = params['zcash-cli'] if 'zcash-cli' in params else './src/zcash-cli'
-        params['unspent']   = params['unspent']   if 'unspent'   in params else None
-        params['verbosity'] = params['verbosity'] if 'verbosity' in params else 'debug'
+        params['zcash-cli'] = params['zcash-cli']  if 'zcash-cli' in params else './src/zcash-cli'
+        params['unspent']   = params['unspent']    if 'unspent'   in params else None
+        params['fee']       = float(params['fee']) if 'fee'       in params else 0
+        params['verbosity'] = params['verbosity']  if 'verbosity' in params else 'debug'
         params['help'] = 'help' in params
 
 	return params
@@ -143,6 +146,8 @@ def printhelp():
 
    Optional:
 
+    --fee=<amt>           fee amount.  default = 0
+
     --zcash-cli=<path>    path to zcash-cli.  default = './src/zcash-cli'
 
     --verbosity=<level>   silent|results|full|debug   default = full
@@ -182,7 +187,7 @@ showresult( rawtx )
 # send to our private zcash address
 
 showheader( "Calling zcrawpour" )
-fee = 0.1
+fee = params['fee']
 param = { keyinfo['zcaddress'] : total - fee }
 pour = zcash_cli_rpc( 'zcrawpour', [rawtx, '{}', json_encode( param ), total, fee] )
 showresult( pour )
