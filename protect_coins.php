@@ -67,7 +67,7 @@ function get_params() {
 
         $params['zcash-cli'] = @$params['zcash-cli'] ?: './src/zcash-cli';
         $params['unspent'] = @$params['unspent'] ?: null;
-        $params['fee'] = @$params['fee'] ? (float)$params['fee']: null;
+        $params['fee'] = @$params['fee'] ? (float)$params['fee']: 0;
         $params['verbosity'] = @$params['verbosity'] ?: 'debug';
         $params['help'] = isset( $params['help'] );
 
