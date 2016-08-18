@@ -186,10 +186,10 @@ showresult( rawtx )
 
 # send to our private zcash address
 
-showheader( "Calling zcrawpour" )
+showheader( "Calling zcrawjoinsplit" )
 fee = params['fee']
 param = { keyinfo['zcaddress'] : total - fee }
-pour = zcash_cli_rpc( 'zcrawpour', [rawtx, '{}', json_encode( param ), total, fee] )
+pour = zcash_cli_rpc( 'zcrawjoinsplit', [rawtx, '{}', json_encode( param ), total, fee] )
 showresult( pour )
 
 # Sign the Tx
@@ -206,7 +206,7 @@ showresult( tx )
 
 # Decrypt received Tx
 showheader( "Decrypting the received Tx" )
-received = zcash_cli_rpc( 'zcrawreceive', [keyinfo['zcsecretkey'], pour['encryptedbucket1']] )
+received = zcash_cli_rpc( 'zcrawreceive', [keyinfo['zcsecretkey'], pour['encryptednote1']] )
 showresult( received )
 
 # Done
